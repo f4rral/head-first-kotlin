@@ -1,6 +1,10 @@
 package chapter_6
 
-abstract class Animal {
+interface Roamable {
+    fun roam()
+}
+
+abstract class Animal : Roamable {
     abstract val image: String
     abstract val food: String
     abstract val habitat: String
@@ -10,7 +14,7 @@ abstract class Animal {
 
     abstract fun eat()
 
-    open fun roam() {
+    override fun roam() {
         println("The Animal is roaming")
     }
 
@@ -50,6 +54,12 @@ open class Wolf : Canine() {
 
     override fun eat() {
         println("The wolf is eating $food")
+    }
+}
+
+class Vehicle : Roamable {
+    override fun roam() {
+        println("The Vehicle is roaming")
     }
 }
 
