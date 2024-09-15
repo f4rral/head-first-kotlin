@@ -57,4 +57,26 @@ fun main(args: Array<String>) {
     var itemNames = ""
     groceries.forEach({ itemNames += "${it.name} "})
     println("itemNames: $itemNames")
+
+    groceries
+        .groupBy { it.category }
+        .forEach {
+            println(it.key)
+            it.value.forEach { println("    ${it.name}") }
+        }
+
+    val ints = listOf(1, 2, 3)
+    val sumOfInts = ints.fold(0) { runningSum, item -> runningSum + item }
+    println("sumOfInts: $sumOfInts")
+
+    val productOfInts = ints.fold(1) { runningProduct, item -> runningProduct * item }
+    println("productOfInts: $productOfInts")
+
+    val names = groceries.fold("") { string, item -> string + " ${item.name} " }
+    println("names: $names")
+
+    val changeFrom50 = groceries.fold(50.0) {
+        change, item -> change - item.unitPrice * item.quantity
+    }
+    println("changeFrom50: $changeFrom50")
 }
